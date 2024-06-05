@@ -17,7 +17,7 @@ public GratitudeEntryRepository gratitudeEntryRepository;
         return gratitudeEntryRepository.findAll();
     }
 
-    public getGratitudeEntry(UUID entryid) throws NoSuchElementException {
+    public getGratitudeEntry(UUID entryId) throws NoSuchElementException {
         return gratitudeEntryRepository.findById(userId).orElseThrow();
     }
 

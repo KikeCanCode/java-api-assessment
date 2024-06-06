@@ -14,3 +14,9 @@ The API provides a structured way to interact with the backend database, allowin
   3. Update a gratitude entry: Modify an existing entry.
   4. Delete a gratitude entry: Remove an entry from the journal
  
+### Algorithm
+The Gratitude Journaling Api will provide search functionality to enhance user experience and accessibility. Specifically, the API will support search capabilities that allow users to query their gratitude entries based on specific criteria such as entry content, topics, and date. 
+
+Users can search by entry content to find specific words or phrases within their journal entries, making it easy to locate particular moments or reflections. The search by topic feature enables users to filter entries based on predefined or user-defined tags or categories, facilitating the organisation and retrieval of entries related to specific themes (e.g., "family", "achievements", "health"). 
+
+Additionally, the API will allow searches by date, enabling users to find entries from a particular day, month, or date range. This functionality is designed to help users easily navigate and reflect on their journaling history, providing a comprehensive tool for personal reflection and growth.

@@ -2,6 +2,8 @@ package com.cbfacademy.apiassessment.GratitudeJournalingApi;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.data.repository.ListCrudRepository;
+
 
 public interface GratitudeEntryRepository extends ListCrudRepository<GratitudeEntry, UUID> { 
     

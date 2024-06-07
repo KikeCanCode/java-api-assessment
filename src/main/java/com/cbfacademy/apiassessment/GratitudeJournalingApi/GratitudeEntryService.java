@@ -22,13 +22,14 @@ public GratitudeEntryRepository gratitudeEntryRepository;
         return gratitudeEntryRepository.findAll();
     }
 
-    public getGratitudeEntry(UUID entryId) throws NoSuchElementException {
-        return gratitudeEntryRepository.findById(userId).orElseThrow();
+    public GratitudeEntry getGratitudeEntry(UUID entryId) throws NoSuchElementException {
+        return gratitudeEntryRepository.findById(entryId).orElseThrow();
     }
 
     public GratitudeEntry updateGratitudeEntry(UUID id, GratitudeEntry updatedgraGratitudeEntry) throws NoSuchElementException{
         GratitudeEntry gratitudeEntry = gratitudeEntryRepository.findById(id).orElseThrow();
         gratitudeEntry.setContent(updatedgraGratitudeEntry.getContent());
+        return gratitudeEntry;
     }
 
 

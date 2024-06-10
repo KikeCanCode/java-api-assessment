@@ -23,9 +23,9 @@ public class GratitudeEntryController {
     //Get Post 
     
     @PostMapping
-    public ResponseEntity<GratitudeEntry> createdGratitudeEntry(@RequestBody GratitudeEntry gratitudeEntry) {
-        GratitudeEntry createGratitudeEntry = gratitudeEntryService.createGratitudeEntry(gratitudeEntry);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createGratitudeEntry);
+    public ResponseEntity<GratitudeEntry> createGratitudeEntry(@RequestBody GratitudeEntry createdgratitudeEntry) {
+        GratitudeEntry createdGratitudeEntry = gratitudeEntryService.createGratitudeEntry(createdgratitudeEntry);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdGratitudeEntry);
     }
 
 // Get 

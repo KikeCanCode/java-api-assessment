@@ -1,4 +1,5 @@
 package com.cbfacademy.apiassessment.GratitudeJournalingApi;
+import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
 
@@ -9,7 +10,7 @@ public interface GratitudeEntryRepository extends ListCrudRepository<GratitudeEn
     
         List<GratitudeEntry> searchByEntryId(UUID entryId); //Question
         
-        List<GratitudeEntry> searchByCreated(String created);// return entry that matches date create
+        List<GratitudeEntry> searchByCreated(Instant created);// return entry that matches date create
 
         List<GratitudeEntry> searchByTopic(String topic);
     

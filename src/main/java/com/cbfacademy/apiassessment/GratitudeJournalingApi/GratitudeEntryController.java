@@ -1,5 +1,4 @@
 package com.cbfacademy.apiassessment.GratitudeJournalingApi;
-
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;

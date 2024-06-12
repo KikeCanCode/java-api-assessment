@@ -43,13 +43,21 @@ public class GratitudeEntryController {
         }
     }
 
-        //GetMaaping - retrive all GrattitudeEntry
+        //GetMaaping - retrives all GrattitudeEntry
     @GetMapping 
     public List<GratitudeEntry> getAllGratitudeEntry() {
         return gratitudeEntryService.getAllGratitudeEntry();
     }
 
-// Put
+        // Put - To update a GratitudeEntry 
+    public ResponseEntity<GratitudeEntry> updateGratitudeEntry(@PathVariable UUID userId, @RequestBody GratitudeEntry updatedGratitudeEntry) {
+        try {
+            GratitudeEntry updatedgratitudeEntry = gratitudeEntryService.updateGratitudeEntry(userId, updatedGratitudeEntry);
+                return ResponseEntity.status(HttpStatus.RESET_CONTENT).body(updatedgratitudeEntry);    
+            } catch (NoSuchElementException noSuchElementException) { // when an element cannot be found.
+                return ResponseEntity.status(HttpStatus.NOT_MODIFIED).body(null);
+            }
+    }
 
 //Delete
 

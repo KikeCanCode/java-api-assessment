@@ -3,7 +3,6 @@ package com.cbfacademy.apiassessment.GratitudeJournalingApi;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,27 +25,27 @@ public class GratitudeEntryController {
     public GratitudeEntryController(GratitudeEntryService gratitudeEntryService){ 
         this.gratitudeEntryService = gratitudeEntryService;
     }
-    // Post 
+        // PostMapping - creates a new Gratitudeentry 
     @PostMapping
     public ResponseEntity<GratitudeEntry> createGratitudeEntry(@RequestBody GratitudeEntry createdgratitudeEntry) {
         GratitudeEntry createdGratitudeEntry = gratitudeEntryService.createGratitudeEntry(createdgratitudeEntry);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdGratitudeEntry);
     }
 
-// Get GrattitudeEntry by entry id 
-@GetMapping("/{entryId}") //("/{created}")// Get GratitudeEntry by user id? or something else?
+        // GetMapping - retrive a GrattitudeEntry by entry id 
+    @GetMapping("/{entryId}") //("/{created}")// Get GratitudeEntry by user id? or something else?
 
-    public ResponseEntity <GratitudeEntry> getGratitudeEntry(@PathVariable UUID entryId) {
-    //public ResponseEntity <GratitudeEntry> getGratitudeEntry(@PathVariable String created) {
+    public ResponseEntity<GratitudeEntry> getGratitudeEntry(@PathVariable UUID entryId) {
+        //public ResponseEntity <GratitudeEntry> getGratitudeEntry(@PathVariable String created) {
         try {
-            return new ResponseEntity<>(gratitudeEntryService.getGratitudeEntry(entryId),HttpStatus.OK);
+            return new ResponseEntity<>(gratitudeEntryService.getGratitudeEntry(entryId), HttpStatus.FOUND);
         } catch (NoSuchElementException noSuchElementException) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
-    //Get 
-    @GetMapping // Get all GratitudeEntries
+        //GetMaaping - retrive all GrattitudeEntry
+    @GetMapping 
     public List<GratitudeEntry> getAllGratitudeEntry() {
         return gratitudeEntryService.getAllGratitudeEntry();
     }

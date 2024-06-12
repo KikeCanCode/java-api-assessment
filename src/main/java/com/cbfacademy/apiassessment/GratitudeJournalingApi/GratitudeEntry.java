@@ -1,8 +1,6 @@
 package com.cbfacademy.apiassessment.GratitudeJournalingApi;
-
 import java.time.Instant;
 import java.util.UUID;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,7 +11,7 @@ import jakarta.persistence.Table;
 @Entity // Indicates that a particular class is an entity and should be mapped to a
 @Table(name = "gratitudeentry") // Tells Hibernate to make a table out of this class
 
-public class GratitudeEntry {//    
+public class GratitudeEntry { // Class name     
 @Id // schema = class in java
 @GeneratedValue(strategy = GenerationType.UUID)
     
@@ -25,7 +23,7 @@ public class GratitudeEntry {//
         private String location; // : The location of the events
         private String topic; // : relationships, career, health, hobbies, achievements, others.
     
-        public GratitudeEntry(String content, Instant created, String location, String topic){
+        public GratitudeEntry(String content, Instant created, String location, String topic) { 
         this.content = content;
         this.created = created;
         this.location = location;

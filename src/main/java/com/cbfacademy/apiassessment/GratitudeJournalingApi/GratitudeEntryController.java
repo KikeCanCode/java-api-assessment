@@ -34,12 +34,12 @@ public class GratitudeEntryController {
     }
 
 // Get GrattitudeEntry by entry id 
-@GetMapping("/{id}") //("/{created}")// Get GratitudeEntry by user id? or something else?
+@GetMapping("/{entryId}") //("/{created}")// Get GratitudeEntry by user id? or something else?
 
-    public ResponseEntity <GratitudeEntry> getGratitudeEntry(@PathVariable UUID id) {
+    public ResponseEntity <GratitudeEntry> getGratitudeEntry(@PathVariable UUID entryId) {
     //public ResponseEntity <GratitudeEntry> getGratitudeEntry(@PathVariable String created) {
         try {
-            return new ResponseEntity<>(gratitudeEntryService.getGratitudeEntry(id),HttpStatus.OK);
+            return new ResponseEntity<>(gratitudeEntryService.getGratitudeEntry(entryId),HttpStatus.OK);
         } catch (NoSuchElementException noSuchElementException) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

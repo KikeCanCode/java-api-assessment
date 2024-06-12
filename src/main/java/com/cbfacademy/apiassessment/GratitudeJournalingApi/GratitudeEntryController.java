@@ -1,5 +1,6 @@
 package com.cbfacademy.apiassessment.GratitudeJournalingApi;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
 
@@ -25,8 +26,7 @@ public class GratitudeEntryController {
     public GratitudeEntryController(GratitudeEntryService gratitudeEntryService){ 
         this.gratitudeEntryService = gratitudeEntryService;
     }
-    //Get Post 
-    
+    // Post 
     @PostMapping
     public ResponseEntity<GratitudeEntry> createGratitudeEntry(@RequestBody GratitudeEntry createdgratitudeEntry) {
         GratitudeEntry createdGratitudeEntry = gratitudeEntryService.createGratitudeEntry(createdgratitudeEntry);
@@ -43,6 +43,12 @@ public class GratitudeEntryController {
         } catch (NoSuchElementException noSuchElementException) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    //Get 
+    @GetMapping // Get all GratitudeEntries
+    public List<GratitudeEntry> getAllGratitudeEntry() {
+        return gratitudeEntryService.getAllGratitudeEntry();
     }
 
 // Put

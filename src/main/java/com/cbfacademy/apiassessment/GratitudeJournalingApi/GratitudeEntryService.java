@@ -17,6 +17,7 @@ public GratitudeEntryRepository gratitudeEntryRepository;   // Instance of Repos
     }
     public GratitudeEntry createGratitudeEntry(GratitudeEntry createdGratitudeEntry) throws IllegalArgumentException, OptimisticLockingFailureException {
         return gratitudeEntryRepository.save(createdGratitudeEntry);    // createed GratitudeEntry
+    }
        
 
    

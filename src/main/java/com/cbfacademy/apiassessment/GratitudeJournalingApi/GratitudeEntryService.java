@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class GratitudeEntryService {
 
+
 public GratitudeEntryRepository gratitudeEntryRepository;   // Instance of Repository class
 
     public GratitudeEntryService(GratitudeEntryRepository gratitudeEntryRepository) {
@@ -16,8 +17,9 @@ public GratitudeEntryRepository gratitudeEntryRepository;   // Instance of Repos
     }
     public GratitudeEntry createGratitudeEntry(GratitudeEntry createdGratitudeEntry) throws IllegalArgumentException, OptimisticLockingFailureException {
         return gratitudeEntryRepository.save(createdGratitudeEntry);    // createed GratitudeEntry
-    }
+       
 
+   
     public List<GratitudeEntry> getAllGratitudeEntry(){     // retrive all entries
         return gratitudeEntryRepository.findAll();
     }

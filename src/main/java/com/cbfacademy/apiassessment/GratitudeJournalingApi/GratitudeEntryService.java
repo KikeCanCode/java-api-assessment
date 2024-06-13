@@ -2,14 +2,13 @@ package com.cbfacademy.apiassessment.GratitudeJournalingApi;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
-
 import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 
 @Service
 public class GratitudeEntryService {
 
-public GratitudeEntryRepository gratitudeEntryRepository;   // Instance of Repository class
+public GratitudeEntryRepository gratitudeEntryRepository;       // Instance of Repository class
 
     public GratitudeEntryService(GratitudeEntryRepository gratitudeEntryRepository) {
         this.gratitudeEntryRepository = gratitudeEntryRepository; 

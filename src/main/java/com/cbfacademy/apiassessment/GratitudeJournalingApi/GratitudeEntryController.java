@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-@RequestMapping(path = "/api/gratitudeentry")
+@RestController     // Spring book annotation 
+@RequestMapping(path = "/api/gratitudeentry")   //URL past 
 
 public class GratitudeEntryController {
 
-    @Autowired
+    @Autowired      // Spring book annotation
 
-    public GratitudeEntryService gratitudeEntryService; // Instance of the service class
+    public GratitudeEntryService gratitudeEntryService;     // Instance of the service class
 
     public GratitudeEntryController(GratitudeEntryService gratitudeEntryService){ 
         this.gratitudeEntryService = gratitudeEntryService;
@@ -29,21 +29,23 @@ public class GratitudeEntryController {
     @PostMapping
     public ResponseEntity<GratitudeEntry> createGratitudeEntry(@RequestBody GratitudeEntry createdgratitudeEntry) {
         GratitudeEntry createdGratitudeEntry = gratitudeEntryService.createGratitudeEntry(createdgratitudeEntry);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdGratitudeEntry);
+            return ResponseEntity.status(HttpStatus.CREATED).body(createdGratitudeEntry);
     }
 
         // GetMapping - retrive a GrattitudeEntry by entry id 
-    @GetMapping("/{entryId}") //("/{created}")// Get GratitudeEntry by user id? or something else?
+    @GetMapping("/{entryId}") // Get GratitudeEntry by user id? or something else? 
 
     public ResponseEntity<GratitudeEntry> getGratitudeEntry(@PathVariable UUID entryId) {
         //public ResponseEntity <GratitudeEntry> getGratitudeEntry(@PathVariable String created) {
+
         try {
             return new ResponseEntity<>(gratitudeEntryService.getGratitudeEntry(entryId), HttpStatus.FOUND);
-        } catch (NoSuchElementException noSuchElementException) {
+        } 
+        catch (NoSuchElementException noSuchElementException) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+      
     }
-
         //GetMaaping - retrives all GrattitudeEntry
     @GetMapping 
     public List<GratitudeEntry> getAllGratitudeEntry() {
@@ -55,22 +57,24 @@ public class GratitudeEntryController {
         try {
             GratitudeEntry updatedgratitudeEntry = gratitudeEntryService.updateGratitudeEntry(userId, updatedGratitudeEntry);
                 return ResponseEntity.status(HttpStatus.RESET_CONTENT).body(updatedgratitudeEntry);    
-            } catch (NoSuchElementException noSuchElementException) { // when an element cannot be found.
+        } 
+        catch (NoSuchElementException noSuchElementException) { // when an element cannot be found.
                 return ResponseEntity.status(HttpStatus.NOT_MODIFIED).body(null);
-            }
+        }
     }
 
     
-//Delete - deletes an entry by id
- @DeleteMapping("/{id}")
+    //Delete - deletes an entry by id
+    @DeleteMapping("/{entryId}")
 
     public ResponseEntity<Void> deleteGratitudeEntry(@PathVariable UUID entryId) {
         try {
             gratitudeEntryService.getGratitudeEntry(entryId);
             gratitudeEntryService.deleteGratitudeEntry(entryId);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (IllegalArgumentException | NoSuchElementException exception) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } 
+        catch (IllegalArgumentException | NoSuchElementException exception) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 

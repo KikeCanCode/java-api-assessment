@@ -25,21 +25,7 @@ public GratitudeEntryRepository gratitudeEntryRepository;   // Instance of Repos
     public GratitudeEntry getGratitudeEntry(UUID entryId) throws NoSuchElementException {
         return gratitudeEntryRepository.findById(entryId).orElseThrow();
     }
-        // To update an entry
-    public GratitudeEntry updateGratitudeEntry(UUID entryId, GratitudeEntry updatedgraGratitudeEntry) throws NoSuchElementException{
-        GratitudeEntry gratitudeEntry = gratitudeEntryRepository.findById(entryId).orElseThrow();
-        gratitudeEntry.setContent(updatedgraGratitudeEntry.getContent());
-        gratitudeEntry.setUserName(updatedgraGratitudeEntry.getUserName());
-        gratitudeEntry.setUpdated(updatedgraGratitudeEntry.getUpdated());
-        gratitudeEntry.setTopic(updatedgraGratitudeEntry.getTopic());
-        gratitudeEntry.setLocation(updatedgraGratitudeEntry.getLocation());
-        
-        return gratitudeEntry;
-    }
-
-    public void deleteGratitudeEntry(UUID entryId) { // To delete an entry by id
-        gratitudeEntryRepository.deleteById(entryId);
-    }
+       
 
 
 }

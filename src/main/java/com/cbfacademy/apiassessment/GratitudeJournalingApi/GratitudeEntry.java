@@ -25,10 +25,11 @@ public class GratitudeEntry { // Class name
         private String topic;           // : relationships, career, health, hobbies, achievements, others.
     
     public GratitudeEntry() {           //default constructor that defines what when you don't a parameter.
-        this(null, Instant.now(), null, null);
+        this(null,null, Instant.now(), null, null);
         }
 
-    public GratitudeEntry(String content, Instant created, String location, String topic) { 
+    public GratitudeEntry(String userName, String content, Instant created, String location, String topic) { 
+        this.userName  = userName; 
         this.content = content;
         this.created = created;
         this.location = location;

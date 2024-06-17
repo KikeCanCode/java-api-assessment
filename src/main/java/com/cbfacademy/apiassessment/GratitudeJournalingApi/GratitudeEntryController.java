@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController     // Spring book annotation 
-@RequestMapping(path = "/api/gratitudeentry")   //URL past 
+@RequestMapping(path = "/api/gratitudeentry")   //URL -  RequestMapping annotation used to map web requests onto specific handler classes and/or handler methods.
 
 public class GratitudeEntryController {
 
@@ -36,9 +36,7 @@ public class GratitudeEntryController {
         // GetMapping - retrive a GrattitudeEntry by entry id 
     @GetMapping("/{entryId}") // Get GratitudeEntry by user id? or something else? 
 
-    public ResponseEntity<GratitudeEntry> getGratitudeEntry(@PathVariable UUID entryId) {
-        //public ResponseEntity <GratitudeEntry> getGratitudeEntry(@PathVariable String created) {
-
+    public ResponseEntity<GratitudeEntry> getGratitudeEntry(@PathVariable UUID entryId) { 
         try {
             return new ResponseEntity<>(gratitudeEntryService.getGratitudeEntry(entryId), HttpStatus.FOUND);
         } 
@@ -58,7 +56,7 @@ public class GratitudeEntryController {
     public ResponseEntity<GratitudeEntry> updateGratitudeEntry(@PathVariable UUID entryId, @RequestBody GratitudeEntry updatedGratitudeEntry) {
         try {
             GratitudeEntry updatedgratitudeEntry = gratitudeEntryService.updateGratitudeEntry(entryId, updatedGratitudeEntry);
-                return ResponseEntity.status(HttpStatus.RESET_CONTENT).body(updatedgratitudeEntry);    
+                return ResponseEntity.status(HttpStatus.OK).body(updatedgratitudeEntry);    // used RESET_Content initially just to see what will the reult be in Postman - No content was printed
         } 
         catch (NoSuchElementException noSuchElementException) { // when an element cannot be found.
                 return ResponseEntity.status(HttpStatus.NOT_MODIFIED).body(null);

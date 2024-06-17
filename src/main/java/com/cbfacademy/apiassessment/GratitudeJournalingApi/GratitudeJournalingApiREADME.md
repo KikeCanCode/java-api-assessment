@@ -14,14 +14,9 @@ The API provides a structured way to interact with the backend database, allowin
   3. Update a gratitude entry: Modify an existing entry.
   4. Delete a gratitude entry: Remove an entry from the journal
  add example of path
-### Algorithm
-The Gratitude Journaling Api will provide search functionality to enhance user experience and accessibility. Specifically, the API will support search capabilities that allow users to query their gratitude entries based on specific criteria such as entry content, topics, and date. 
 
-Users can search by entry content to find specific words or phrases within their journal entries, making it easy to locate particular moments or reflections. The search by topic feature enables users to filter entries based on predefined or user-defined tags or categories, facilitating the organisation and retrieval of entries related to specific themes (e.g., "family", "achievements", "health"). 
-
-Additionally, the API will allow searches by date, enabling users to find entries from a particular day, month, or date range. This functionality is designed to help users easily navigate and reflect on their journaling history, providing a comprehensive tool for personal reflection and growth.
-
-###  Methods that defines endpoints for the following operations:
+### Request methods testing in Postman
+Methods that defines endpoints for the following operations:
 
 | Method   | URL                              | Description                     |
 | -------- | ---------------------------------| --------------------------------|
@@ -42,6 +37,24 @@ Additionally, the API will allow searches by date, enabling users to find entrie
 "topic": "Achievement/Career"
 }
 ```
+### Algorithm
+The Gratitude Journaling Api will provide search functionality to enhance user experience and accessibility. Specifically, the API will support search capabilities that allow users to query their gratitude entries based on specific criteria such as entry content, topics, and date. 
+
+Users can search by entry content to find specific words or phrases within their journal entries, making it easy to locate particular moments or reflections. The search by topic feature enables users to filter entries based on predefined or user-defined tags or categories, facilitating the organisation and retrieval of entries related to specific themes (e.g., "family", "achievements", "health"). 
+
+Additionally, the API will allow searches by date, enabling users to find entries from a particular day, month, or date range. This functionality is designed to help users easily navigate and reflect on their journaling history, providing a comprehensive tool for personal reflection and growth.
+
+### A respresentative of how a saerch algorithm will look like:
+
+| Method   | URL                                                        | Description                       | Key               | value     |
+| -------- | -----------------------------------------------------------|-----------------------------------|-------------------|-----------|
+| `GET`    | `/api/gratitudeentry/search-by-topic?topic=health`         | Search GratitudeEntry by topic    |Topic              | Health    |
+| `GET`    | `/api/gratitudeentry/search-by-location?location=New+york` | Search GratitudeEntry by location |Location           |New York
+| `GET`    | `/api/gratitudeentry/{id}`             | Get a GratitudeEntry by id      |
+| `GET`    | `/api/gratitudeentry/{id}`             | Update a GratitudeEntry by Id   |
+| `GET`    | `/api/gratitudeentry/{id}`             | Delete a GratitudeEntry by id   |
+
+
 ### Getting Started
 To start using the Journaling API, follow the steps below:
 
@@ -53,19 +66,16 @@ A running instance of a database (e.g., MySQL, PostgreSQL)
 ### Installation
 Clone the repository:
 
-```
 git clone https://github.com/your-username/gratitudejournalingaapi.git
 cd gratitudejournalingapi
 
-```
 Configure your database connection in src/main/resources/application.properties:
 
-````
+```
 spring.datasource.url=jdbc:mysql://localhost:3306/gratitudejournalingapi
 spring.datasource.username=root
 spring.datasource.password=Myjournal 
 spring.jpa.hibernate.ddl-auto=update
-
 ```
 Build and run the application using Maven:
 

@@ -13,7 +13,7 @@ The API provides a structured way to interact with the backend database, allowin
   2. Read gratitude entries: Retrieve existing entries from the journal.(search/read).
   3. Update a gratitude entry: Modify an existing entry.
   4. Delete a gratitude entry: Remove an entry from the journal
- 
+ add example of path
 ### Algorithm
 The Gratitude Journaling Api will provide search functionality to enhance user experience and accessibility. Specifically, the API will support search capabilities that allow users to query their gratitude entries based on specific criteria such as entry content, topics, and date. 
 

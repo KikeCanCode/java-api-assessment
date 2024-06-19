@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import jakarta.websocket.server.PathParam;
 
 @RestController     // Spring book annotation 
 @RequestMapping(path = "/api/gratitudeentry")   //URL -  RequestMapping annotation used to map web requests onto specific handler classes and/or handler methods.
@@ -63,7 +66,6 @@ public class GratitudeEntryController {
         }
     }
 
-    
     //Delete - deletes an entry by id
     @DeleteMapping("/{entryId}")
 
@@ -76,7 +78,17 @@ public class GratitudeEntryController {
         catch (IllegalArgumentException | NoSuchElementException exception) {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-    }
+        }
+    
+    // Algorithms earch - 
 
-}
+    @GetMapping("/sortbytopic")
+    public ResponseEntity<List<GratitudeEntry>> sortByTopic(@RequestParam String topic) {
+        List<GratitudeEntry> results = (List<GratitudeEntry>) gratitudeEntryService.sortGratitudeEntry(topic);
+        return new ResponseEntity<>(results, HttpStatus.OK);
+    }
+   
+
+}  
+
 

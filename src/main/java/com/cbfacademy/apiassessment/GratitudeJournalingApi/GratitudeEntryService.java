@@ -1,11 +1,8 @@
 package com.cbfacademy.apiassessment.GratitudeJournalingApi;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
-import java.util.stream.Stream;
-
 import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 
@@ -13,16 +10,16 @@ import org.springframework.stereotype.Service;
 public class GratitudeEntryService {
    
 
-public GratitudeEntryRepository gratitudeEntryRepository;       // Instance of Repository class
+public GratitudeEntryRepository gratitudeEntryRepository;      
 
     public GratitudeEntryService(GratitudeEntryRepository gratitudeEntryRepository) {
         this.gratitudeEntryRepository = gratitudeEntryRepository; 
     }
     public GratitudeEntry createGratitudeEntry(GratitudeEntry createdGratitudeEntry) throws IllegalArgumentException, OptimisticLockingFailureException {
-        return gratitudeEntryRepository.save(createdGratitudeEntry);    // createed GratitudeEntry
+        return gratitudeEntryRepository.save(createdGratitudeEntry);   
     }
 
-    public List<GratitudeEntry> getAllGratitudeEntry(){     // retrive all entries
+    public List<GratitudeEntry> getAllGratitudeEntry(){    
         return gratitudeEntryRepository.findAll();
     }
 
@@ -41,56 +38,40 @@ public GratitudeEntryRepository gratitudeEntryRepository;       // Instance of R
         return gratitudeEntry;
     }
 
-    public void deleteGratitudeEntry(UUID entryId) { // To delete an entry by id
+    public void deleteGratitudeEntry(UUID entryId) { 
         gratitudeEntryRepository.deleteById(entryId);
     }
 
+    public List<GratitudeEntry> getGratitudeEntriesByTopic(String topic) {
+        return gratitudeEntryRepository.findGratitudeEntryByTopicOrderByTopicAsc(topic);
+    }
+    /*public List<GratitudeEntry> sortGratitudeEntry(String topic) {
+        List<GratitudeEntry> gratitudeEntries = getAllGratitudeEntry();
+        gratitudeEntries.sort((entry1, entry2) -> entry1.getTopic().compareTo(entry2.getTopic()));
+        return gratitudeEntries;*/
+
+    
+
     // Algorithm search - Binary search - Sorted 
 
-    public List<GratitudeEntry> sortGratitudeEntry(String topic) {
+   /* public List<GratitudeEntry> sortGratitudeEntry(String topic) {
+        
         List<GratitudeEntry> gratitudeEntries = getAllGratitudeEntry();
         GratitudeEntry[] entryArray = gratitudeEntries.toArray(new GratitudeEntry[gratitudeEntries.size()]);
 
-        for (int i = 0; i < entryArray.length; i++) { // for each entry in list - take 1st elmt in array compare to each elmts and see 
-            for (int g = 0; g < i ; g++) { 
-                if (entryArray[i].getTopic().compareTo(entryArray[g].getTopic()) > 0) { 
-                    GratitudeEntry entry = entryArray[i];
-                    entryArray[i] = entryArray[g];
-                    entryArray[g] = entry;
+            for (int i = 0; i < entryArray.length; i++) { 
+                for (int g = 0; g < i ; g++) { 
+                    if (entryArray[i].getTopic().compareTo(entryArray[g].getTopic()) > 0) { 
+                        GratitudeEntry entry = entryArray[i];
+                        entryArray[i] = entryArray[g];
+                         entryArray[g] = entry;
+                    }
                 }
-            }
-        }   
+            }   
                 return Arrays.asList(entryArray);
-    }
-    
-        
-
-    
-
-		
-
-
-   /*public List<GratitudeEntry>gratitudeEntries; // field declaration 
-        public GratitudeEntryService() { // constructor to initialise list
-        this.gratitudeEntries = new ArrayList<>(); // 
-
-        }*/
-    // Method to sort entries by createdDate
-
-
-   /*  public List<GratitudeEntry> getAllGratitudeEntrySorted (){
-        // create a stream from the gratitudeentry list
-        Stream<GratitudeEntry> entryStream = gratitudeEntries.stream();
-        // Sort the stream by the createdDate field
-        Stream<GratitudeEntry> sortedStream = 
-
-        return sortedEntries;
-
     }*/
-//Stream<T> sorted(Comparator<? super T> comparator) 
-//https://docs.oracle.com/javase%2F8%2Fdocs%2Fapi%2F%2F/java/util/stream/Stream.html
 
+   
 }
    
-
 

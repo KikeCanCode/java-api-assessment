@@ -49,9 +49,9 @@ public class GratitudeEntryControllerTest {
     private TestRestTemplate restTemplate;
     private List<GratitudeEntry> defaultGratitudeEntry = new ArrayList<>() {
         {
-            add(new GratitudeEntry("Rebecca", "I am gratful for a sunny day", Instant.now(), "Birmingham", "Health"));
-            add(new GratitudeEntry("Rebecca", "I am gratful for a my family", Instant.now(), "Birmingham", "Family"));
-            add(new GratitudeEntry("Kenneth", "I am gratful for passing my Maths exam", Instant.now(), "Spain", "Achievements"));
+            add(new GratitudeEntry("Rebecca", "I am grateful for a sunny day", Instant.now(), "Birmingham", "Health"));
+            add(new GratitudeEntry("Rebecca", "I am grateful for my family", Instant.now(), "Birmingham", "Family"));
+            add(new GratitudeEntry("Kenneth", "I am grateful for passing my Maths exam", Instant.now(), "Spain", "Achievements"));
         
         }
     };
@@ -75,26 +75,28 @@ public class GratitudeEntryControllerTest {
     @Description("POST /api/gratitudeentry creates new GratitudeEntry")
     void createdGratitudeEntry(){
         // Arrange
-        GratitudeEntry gratitudeEntry = createNewEntry(); //createGratitudeEntry();
+        GratitudeEntry gratitudeEntry = createGratitudeEntry(); // craeting G-entry object that I will use later on.
 
-        when(gratitudeEntryService.createGratitudeEntry(any(GratitudeEntry.class))).thenAnswer(invocation -> setEntryId(invocation.getArgument(0)));
+        when(gratitudeEntryService.createGratitudeEntry(any(GratitudeEntry.class))).thenAnswer(invocation -> setEntryId(invocation.getArgument(0))); 
+        // Override what the service will do, value that service will return the id of the object passed to the service.
         // Act
-        ResponseEntity<GratitudeEntry> response = restTemplate.postForEntity(baseURI.toString(), gratitudeEntry, GratitudeEntry.class);
+        ResponseEntity<GratitudeEntry> response = restTemplate.postForEntity(baseURI.toString(), gratitudeEntry, GratitudeEntry.class);// catch the response from the controller 
         
         // Assert
-        assertEquals(HttpStatus.CREATED, response.getStatusCode());
+        assertEquals(HttpStatus.CREATED, response.getStatusCode()); // comfirm the response 
 		assertNotNull(response.getBody());
 		assertNotNull(response.getBody().getEntryId());
-		verify(gratitudeEntryService).createGratitudeEntry(any(GratitudeEntry.class));
+		verify(gratitudeEntryService).createGratitudeEntry(any(GratitudeEntry.class));// post controller was called, confirm that the service was called from controller with G-entry object as parameter. 
 
     }
 
     @Test
     @Description("GET /api/gratitudeentry returns all GratitudeEntry")
-    void getAllGratitudeEntry() throws URISyntaxException {
+
+    void getAllGratitudeEntry() throws URISyntaxException {  
         // Act 
     ResponseEntity<List<GratitudeEntry>> response = restTemplate.exchange(baseURI, HttpMethod.GET, null, 
-        new ParameterizedTypeReference<List<GratitudeEntry>>() {});
+        new ParameterizedTypeReference<List<GratitudeEntry>>() {}); 
     
     List<GratitudeEntry> reponseGratitudeEntries = response.getBody();
 
@@ -109,7 +111,7 @@ public class GratitudeEntryControllerTest {
 @Description("GET /api/gratitudeentry/{id} returns 404 for invalid IOU")
 	void getInvalidGratitudeEntry() {
 		// Arrange
-		GratitudeEntry gratitudeEntry = createNewEntry(); // createGratitudeEntry();
+		GratitudeEntry gratitudeEntry = createGratitudeEntry(); 
 		URI endpoint = getEndpoint(gratitudeEntry);
 
 		when(gratitudeEntryService.getGratitudeEntry(any(UUID.class))).thenThrow(NoSuchElementException.class);
@@ -126,14 +128,14 @@ public class GratitudeEntryControllerTest {
         int randomIndex = new Random().nextInt(defaultGratitudeEntry.size());
         return setEntryId(defaultGratitudeEntry.get(randomIndex));
     }
-    private GratitudeEntry createNewEntry() {
+    private GratitudeEntry createGratitudeEntry() {
         return setEntryId(new GratitudeEntry("Rebecca", "I am gratful for a sunny day", Instant.now(), "Birmingham", "Health"));
     }
     private URI getEndpoint(GratitudeEntry gratitudeEntry){
         return appendPath(baseURI, gratitudeEntry.getEntryId().toString());
 
     }
-    private Instant geInstant(int hoursToSubtract){     //Get the current date and time in the system's default time zone
+    private Instant geInstant(int hoursToSubtract){     
 
         ZoneId systemTimeZone = ZoneId.systemDefault(); 
         ZonedDateTime currentDateTime = ZonedDateTime.now(systemTimeZone);

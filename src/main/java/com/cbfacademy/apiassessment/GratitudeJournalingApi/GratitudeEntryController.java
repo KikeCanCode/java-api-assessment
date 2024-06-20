@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,17 +15,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import jakarta.websocket.server.PathParam;
 
-@RestController     // Spring book annotation 
-@RequestMapping(path = "/api/gratitudeentry")   //URL -  RequestMapping annotation used to map web requests onto specific handler classes and/or handler methods.
+@RestController     
+@RequestMapping(path = "/api/gratitudeentry")   
 
 public class GratitudeEntryController {
 
-    @Autowired      // Spring book annotation
+    @Autowired      
 
-    public GratitudeEntryService gratitudeEntryService;     // Instance of the service class
+    public GratitudeEntryService gratitudeEntryService;    
 
     public GratitudeEntryController(GratitudeEntryService gratitudeEntryService){ 
         this.gratitudeEntryService = gratitudeEntryService;
@@ -37,8 +37,7 @@ public class GratitudeEntryController {
     }
 
         // GetMapping - retrive a GrattitudeEntry by entry id 
-    @GetMapping("/{entryId}") // Get GratitudeEntry by user id? or something else? 
-
+    @GetMapping("/{entryId}") 
     public ResponseEntity<GratitudeEntry> getGratitudeEntry(@PathVariable UUID entryId) { 
         try {
             return new ResponseEntity<>(gratitudeEntryService.getGratitudeEntry(entryId), HttpStatus.FOUND);
@@ -61,8 +60,8 @@ public class GratitudeEntryController {
             GratitudeEntry updatedgratitudeEntry = gratitudeEntryService.updateGratitudeEntry(entryId, updatedGratitudeEntry);
                 return ResponseEntity.status(HttpStatus.OK).body(updatedgratitudeEntry);    // used RESET_Content initially just to see what will the reult be in Postman - No content was printed
         } 
-        catch (NoSuchElementException noSuchElementException) { // when an element cannot be found.
-                return ResponseEntity.status(HttpStatus.NOT_MODIFIED).body(null);
+        catch (NoSuchElementException noSuchElementException) { 
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
 
@@ -83,12 +82,46 @@ public class GratitudeEntryController {
     // Algorithms earch - 
 
     @GetMapping("/sortbytopic")
-    public ResponseEntity<List<GratitudeEntry>> sortByTopic(@RequestParam String topic) {
-        List<GratitudeEntry> results = (List<GratitudeEntry>) gratitudeEntryService.sortGratitudeEntry(topic);
-        return new ResponseEntity<>(results, HttpStatus.OK);
-    }
-   
+    public ResponseEntity<List<GratitudeEntry>> getGratitudeEntriesByTopic(@RequestParam String topic) {
+        List<GratitudeEntry> gratitudeEntries = gratitudeEntryService.getGratitudeEntriesByTopic(topic);
+        return ResponseEntity.ok(gratitudeEntries);
 
-}  
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+   /*@GetMapping("/sortByTopic")
+    public ResponseEntity<List<GratitudeEntry>> sortByTopic(@RequestParam String topic) {
+        List<GratitudeEntry> results = gratitudeEntryService.sortGratitudeEntry(topic);
+        return new ResponseEntity<>(results, HttpStatus.OK);
+    }*/
+
+    /*@GetMapping("/sortbytopic")
+    @Query("SELECT g FROM GratitudeEntry g ORDER BY g.topic")
+    public ResponseEntity<List<GratitudeEntry>> sortGratitudeEntries(@RequestParam String topic) {
+        List<GratitudeEntry> sortedEntries = gratitudeEntryService.sortGratitudeEntry(topic);
+        return new ResponseEntity<>(sortedEntries, HttpStatus.OK);
+    }*/
+ /*@GetMapping("/sortbytopic")
+public ResponseEntity<String> sortByTopic(@RequestParam String sortbytopic) {
+    // Implementation for sorting by topic
+   return ResponseEntity.ok().body(sortbytopic);
+    //return ResponseEntity.status(HttpStatus.OK).body(sortbytopic);
+}*/
+
 
 

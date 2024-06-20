@@ -8,23 +8,23 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
     
-@Entity     // Indicates that a particular class is an entity and should be mapped to a
-@Table(name = "gratitudeentry") // Tells Hibernate to make a table out of this class
+@Entity    
+@Table(name = "gratitudeentry") 
 
-public class GratitudeEntry { // Class name  
+public class GratitudeEntry {  
        
-@Id // schema = class in java
+@Id 
 @GeneratedValue(strategy=GenerationType.UUID)
     
-        private UUID entryId;           //A unique identifier for the entry.
-        private String userName;        // The identifier for the user who created the entry.
-        private String content;         // The text content of the gratitude entry.
-        private Instant created;        // The timestamp when the entry was created.
-        private Instant updated;        // The timestamp when the entry was last updated.
-        private String location;        // The location of the events
-        private String topic;           // : relationships, career, health, hobbies, achievements, others.
+        private UUID entryId;           
+        private String userName;       
+        private String content;         
+        private Instant created;        
+        private Instant updated;        
+        private String location;        
+        private String topic;           
     
-    public GratitudeEntry() {           //default constructor that defines what when you don't a parameter.
+    public GratitudeEntry() {           
         this(null,null, Instant.now(), null, null);
         }
 
@@ -33,15 +33,8 @@ public class GratitudeEntry { // Class name
         this.content = content;
         this.created = created;
         this.location = location;
-        this.topic = topic;             // could be optional
+        this.topic = topic;             
     }
-
-    /* getters and setters
-        Getters: Methods that retrieve the value of a field.
-        Setters: Methods that update the value of a field.
-        They are typically named getFieldName and setFieldName.
-        They help enforce encapsulation and provide a controlled way of accessing and modifying fields.
-    */
 
     public UUID getEntryId() {
         return entryId;
@@ -98,4 +91,6 @@ public class GratitudeEntry { // Class name
     public void setCreated(Instant created) {
         this.created = created;
     }
+
 }  
+

@@ -78,7 +78,6 @@ public class GratitudeEntryController {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         }
-    
     // Algorithms earch - 
 
     @GetMapping("/sortbytopic")

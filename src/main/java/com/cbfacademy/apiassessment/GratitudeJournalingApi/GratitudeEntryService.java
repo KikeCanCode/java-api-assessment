@@ -19,8 +19,11 @@ public GratitudeEntryRepository gratitudeEntryRepository;
         return gratitudeEntryRepository.save(createdGratitudeEntry);   
     }
 
-    public List<GratitudeEntry> getAllGratitudeEntry(){    
-        return gratitudeEntryRepository.findAll();
+    public List<GratitudeEntry> getAllGratitudeEntry(){
+        List<GratitudeEntry> gratitudeEntries = gratitudeEntryRepository.findAll();
+        GratitudeEntry[] entryArray = gratitudeEntries.toArray(new GratitudeEntry[gratitudeEntries.size()]);
+        sort(entryArray, 0, entryArray.length - 1);
+        return Arrays.asList(entryArray);
     }
 
     public GratitudeEntry getGratitudeEntry(UUID entryId) throws NoSuchElementException {
@@ -43,7 +46,7 @@ public GratitudeEntryRepository gratitudeEntryRepository;
     }
 
     public List<GratitudeEntry> getGratitudeEntriesByTopic(String topic) {
-        return gratitudeEntryRepository.findGratitudeEntryByTopicOrderByTopicAsc(topic);
+        return gratitudeEntryRepository.searchByTopic(topic);
     }
     /*public List<GratitudeEntry> sortGratitudeEntry(String topic) {
         List<GratitudeEntry> gratitudeEntries = getAllGratitudeEntry();
@@ -54,7 +57,7 @@ public GratitudeEntryRepository gratitudeEntryRepository;
 
     // Algorithm search - Binary search - Sorted 
 
-   /* public List<GratitudeEntry> sortGratitudeEntry(String topic) {
+   /*  public List<GratitudeEntry> sortGratitudeEntry(String topic) {
         
         List<GratitudeEntry> gratitudeEntries = getAllGratitudeEntry();
         GratitudeEntry[] entryArray = gratitudeEntries.toArray(new GratitudeEntry[gratitudeEntries.size()]);
@@ -72,6 +75,41 @@ public GratitudeEntryRepository gratitudeEntryRepository;
     }*/
 
    
+  /*   public List<GratitudeEntry> sortEntries() {
+        List<GratitudeEntry> gratitudeEntries = gratitudeEntryRepository.findAll();
+        GratitudeEntry[] entryArray = gratitudeEntries.toArray(new GratitudeEntry[gratitudeEntries.size()]);
+        sort(entryArray, 0, entryArray.length - 1);
+        return Arrays.asList(entryArray);
+    }*/
+    
+    
+    public void sort(GratitudeEntry[] entryArray, int startIndex, int endIndex) {
+        if (startIndex < endIndex) {
+            int pivotIndex = partition(entryArray, startIndex, endIndex);
+            sort(entryArray, startIndex, pivotIndex - 1);
+            sort(entryArray, pivotIndex + 1, endIndex);
+        }
+    }
+    
+    public int partition(GratitudeEntry[] entryArray, int startIndex, int endIndex) {
+        GratitudeEntry pivot = entryArray[endIndex];
+        int boundaryIndex = startIndex - 1;
+    
+        for (int currentIndex = startIndex; currentIndex < endIndex; currentIndex++) {
+            if (entryArray[currentIndex].getTopic().compareTo(pivot.getTopic()) <= 0) {
+                boundaryIndex = boundaryIndex + 1;
+                swap(entryArray, boundaryIndex, currentIndex);
+            }
+        }
+        swap(entryArray, boundaryIndex + 1, endIndex);
+        return boundaryIndex + 1;
+    }
+    
+    public void swap(GratitudeEntry[] entries, int leftIndex, int rightIndex) {
+        GratitudeEntry temp = entries[leftIndex];
+        entries[leftIndex] = entries[rightIndex];
+        entries[rightIndex] = temp;
+}
 }
    
 

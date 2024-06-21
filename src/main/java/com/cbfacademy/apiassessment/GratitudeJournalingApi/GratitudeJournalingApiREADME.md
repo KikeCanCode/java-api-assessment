@@ -99,7 +99,7 @@ API endpoints: This is a list of all created endpoints and expected responses.
 "topic": "Achievement"
 }
 ```
-### Search Algorithm - Sorted list
+### Filter entries by topic
 The Gratitude Journaling Api will provide search functionality to enhance user experience and accessibility. Specifically, the API will support search capabilities that allow users to query their gratitude entries based on specific criteria such as entry content, topics, and date. 
 
 Users can search by entry content to find specific words or phrases within their journal entries, making it easy to locate particular moments or reflections. The search by topic feature enables users to filter entries based on predefined or user-defined tags or categories, facilitating the organisation and retrieval of entries related to specific themes (e.g., "family", "achievements", "health"). 

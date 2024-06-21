@@ -14,7 +14,7 @@ public interface GratitudeEntryRepository extends ListCrudRepository<GratitudeEn
 
         List<GratitudeEntry> searchByTopic(String topic);
 
-        List<GratitudeEntry> findGratitudeEntryByTopicOrderByTopicAsc(String topic);
+        //List<GratitudeEntry> findGratitudeEntryByTopic(String topic);
 
     }
     

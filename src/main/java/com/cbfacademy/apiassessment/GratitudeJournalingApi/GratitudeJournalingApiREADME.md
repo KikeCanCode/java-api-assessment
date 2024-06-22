@@ -100,9 +100,7 @@ API endpoints: This is a list of all created endpoints and expected responses.
 }
 ```
 ### Filter entries by topic
-The Gratitude Journaling Api will provide search functionality to enhance user experience and accessibility. Specifically, the API will support search capabilities that allow users to query their gratitude entries based on specific criteria such as entry content, topics, and date. 
-
-Users can search by entry content to find specific words or phrases within their journal entries, making it easy to locate particular moments or reflections. The search by topic feature enables users to filter entries based on predefined or user-defined tags or categories, facilitating the organisation and retrieval of entries related to specific themes (e.g., "family", "achievements", "health"). 
+The Gratitude Journaling API will support search capabilities that allow users to query their gratitude entries based on specific criteria such as  topic. The search by topic feature enables users to filter entries based on predefined or user-defined tags or categories, facilitating the organisation and retrieval of entries related to specific themes (e.g., "family", "achievements", "health"). 
 
 ### A respresentative of how a saerch algorithm will look like:
 
@@ -113,7 +111,7 @@ Users can search by entry content to find specific words or phrases within their
 
 ### Issues and Challenges
 1. Misconfiguration of the database can lead to connection failures. Ensure that the `spring.datasource.url`, `spring.datasource.username`, and `spring.datasource.password` values are correctly set in the `application.properties` file.
-2. Ensure the key and value filed ared checked in sort by topic body.
+2. Ensure the key and value field are checked in body when sending a request for sort by topic.
 3. Ensure MySQL is connected before sending resquests.
 
 ### Technologies Used

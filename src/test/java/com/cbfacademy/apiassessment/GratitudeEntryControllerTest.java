@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-
-import java.math.BigDecimal;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.Duration;
@@ -18,7 +16,6 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Random;
 import java.util.UUID;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +30,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.web.util.UriComponentsBuilder;
-
 import com.cbfacademy.apiassessment.GratitudeJournalingApi.GratitudeEntry;
 import com.cbfacademy.apiassessment.GratitudeJournalingApi.GratitudeEntryService;
 
@@ -75,18 +71,18 @@ public class GratitudeEntryControllerTest {
     @Description("POST /api/gratitudeentry creates new GratitudeEntry")
     void createdGratitudeEntry(){
         // Arrange
-        GratitudeEntry gratitudeEntry = createGratitudeEntry(); // craeting G-entry object that I will use later on.
+        GratitudeEntry gratitudeEntry = createGratitudeEntry(); 
 
         when(gratitudeEntryService.createGratitudeEntry(any(GratitudeEntry.class))).thenAnswer(invocation -> setEntryId(invocation.getArgument(0))); 
-        // Override what the service will do, value that service will return the id of the object passed to the service.
+        
         // Act
         ResponseEntity<GratitudeEntry> response = restTemplate.postForEntity(baseURI.toString(), gratitudeEntry, GratitudeEntry.class);// catch the response from the controller 
         
         // Assert
-        assertEquals(HttpStatus.CREATED, response.getStatusCode()); // comfirm the response 
+        assertEquals(HttpStatus.CREATED, response.getStatusCode()); 
 		assertNotNull(response.getBody());
 		assertNotNull(response.getBody().getEntryId());
-		verify(gratitudeEntryService).createGratitudeEntry(any(GratitudeEntry.class));// post controller was called, confirm that the service was called from controller with G-entry object as parameter. 
+		verify(gratitudeEntryService).createGratitudeEntry(any(GratitudeEntry.class));
 
     }
 
@@ -135,7 +131,7 @@ public class GratitudeEntryControllerTest {
         return appendPath(baseURI, gratitudeEntry.getEntryId().toString());
 
     }
-    private Instant geInstant(int hoursToSubtract){     
+    private Instant getInstant(int hoursToSubtract){     
 
         ZoneId systemTimeZone = ZoneId.systemDefault(); 
         ZonedDateTime currentDateTime = ZonedDateTime.now(systemTimeZone);

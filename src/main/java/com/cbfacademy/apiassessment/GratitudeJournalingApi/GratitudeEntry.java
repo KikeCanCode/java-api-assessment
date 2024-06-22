@@ -1,4 +1,5 @@
 package com.cbfacademy.apiassessment.GratitudeJournalingApi;
+
 import java.time.Instant;
 import java.util.UUID;
 import jakarta.persistence.Entity;

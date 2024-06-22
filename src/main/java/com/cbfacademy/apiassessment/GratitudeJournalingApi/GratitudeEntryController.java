@@ -3,7 +3,6 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import jakarta.websocket.server.PathParam;
 
 @RestController     
 @RequestMapping(path = "/api/gratitudeentry")   
@@ -78,14 +76,15 @@ public class GratitudeEntryController {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         }
-    // Algorithms earch - 
-
+    
+        // sort GratitudeEntry by topic
     @GetMapping("/sortbytopic")
     public ResponseEntity<List<GratitudeEntry>> getGratitudeEntriesByTopic(@RequestParam String topic) {
         List<GratitudeEntry> gratitudeEntries = gratitudeEntryService.getGratitudeEntriesByTopic(topic);
         return ResponseEntity.ok(gratitudeEntries);
 
     }
+
 }
 
 

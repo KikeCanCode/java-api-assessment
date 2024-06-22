@@ -56,7 +56,7 @@ public class GratitudeEntryController {
     public ResponseEntity<GratitudeEntry> updateGratitudeEntry(@PathVariable UUID entryId, @RequestBody GratitudeEntry updatedGratitudeEntry) {
         try {
             GratitudeEntry updatedgratitudeEntry = gratitudeEntryService.updateGratitudeEntry(entryId, updatedGratitudeEntry);
-                return ResponseEntity.status(HttpStatus.OK).body(updatedgratitudeEntry);    // used RESET_Content initially just to see what will the reult be in Postman - No content was printed
+                return ResponseEntity.status(HttpStatus.OK).body(updatedgratitudeEntry);   
         } 
         catch (NoSuchElementException noSuchElementException) { 
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);

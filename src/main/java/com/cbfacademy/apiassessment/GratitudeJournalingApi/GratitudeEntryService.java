@@ -74,10 +74,10 @@ public GratitudeEntryRepository gratitudeEntryRepository;
         return boundaryIndex + 1;
     }
     
-    public void swap(GratitudeEntry[] entryArray, int leftIndex, int rightIndex) {
-        GratitudeEntry temp = entryArray[leftIndex];
-        entryArray[leftIndex] = entryArray[rightIndex];
-        entryArray[rightIndex] = temp;
+    public void swap(GratitudeEntry[] entries, int leftIndex, int rightIndex) {
+        GratitudeEntry temp = entries[leftIndex];
+        entries[leftIndex] = entries[rightIndex];
+        entries[rightIndex] = temp;
     }
 }
    

@@ -153,3 +153,6 @@ public class GratitudeEntryControllerTest {
     
 }
     
+/* Resources
+https://www.javatpoint.com/junit-tutorial
+*/ 

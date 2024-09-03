@@ -1,5 +1,6 @@
 package com.cbfacademy.apiassessment.GratitudeJournalingApi;
 
+import java.time.Instant;
 import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -35,7 +36,7 @@ public GratitudeEntryRepository gratitudeEntryRepository;
         GratitudeEntry gratitudeEntry = gratitudeEntryRepository.findById(entryId).orElseThrow();
         gratitudeEntry.setContent(updatedgraGratitudeEntry.getContent());
         gratitudeEntry.setUserName(updatedgraGratitudeEntry.getUserName());
-        gratitudeEntry.setUpdated(updatedgraGratitudeEntry.getUpdated());
+        gratitudeEntry.setUpdated(Instant.now());
         gratitudeEntry.setTopic(updatedgraGratitudeEntry.getTopic());
         gratitudeEntry.setLocation(updatedgraGratitudeEntry.getLocation());
         
@@ -60,7 +61,7 @@ public GratitudeEntryRepository gratitudeEntryRepository;
         }
     }
     
-    public int partition(GratitudeEntry[] entryArray, int startIndex, int endIndex) {
+    public int partition(GratitudeEntry[] entryArray, int startIndex, int endIndex) { 
         GratitudeEntry pivot = entryArray[endIndex];
         int boundaryIndex = startIndex - 1;
     
